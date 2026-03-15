@@ -1,151 +1,71 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Link from "next/link";
-import { Menu, Search, Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { SearchModal } from "./search-modal";
-import { SettingsModal } from "./settings-modal";
-import { usePathname } from "next/navigation";
+import Link from "next/link"
+import { useRouter } from 'next/navigation' // استيراد الروتر للتوجيه
+import { LogIn, LogOut, UserPlus } from "lucide-react"
+import { ModeToggle } from "@/components/mode-toggle"
+import Cookies from 'js-cookie' // استيراد مكتبة الكوكيز
 
 export function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [settingsOpen, setSettingsOpen] = useState(false);
-  const pathName = usePathname();
+  const router = useRouter()
+
+  // --- دالة تسجيل الخروج ---
+  const handleLogout = () => {
+    Cookies.remove('auth-token') // 1. حذف التوكن
+    router.push('/login')        // 2. توجيه لصفحة الدخول
+    router.refresh()             // 3. تحديث الصفحة لتفعيل الميدل وير
+  }
 
   return (
-    <>
-      <header className="sticky top-0 z-40 bg-background border-b border-border shadow-sm">
-        {menuOpen && (
-  <div className="fixed inset-0 bg-black/40 z-50 lg:hidden" onClick={() => setMenuOpen(false)}>
-    <div 
-      className="absolute right-0 top-0 w-64 h-full bg-white shadow-xl p-6 flex flex-col gap-6"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button 
-        onClick={() => setMenuOpen(false)} 
-        className="text-lg font-bold self-end"
-      >
-        ✕
-      </button>
-
-      <Link href="/" onClick={() => setMenuOpen(false)}>الرئيسية</Link>
-      <Link href="/News" onClick={() => setMenuOpen(false)}>أخبار</Link>
-      <Link href="/Artical" onClick={() => setMenuOpen(false)}>أراء</Link>
-      <Link href="/Calcutural" onClick={() => setMenuOpen(false)}>ثقافة</Link>
-      <Link href="/Sport" onClick={() => setMenuOpen(false)}>رياضة</Link>
-    </div>
-  </div>
-)}
-
-        {/* Top bar with menu and search */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          {/* Left: Menu and Logo */}
-          <div className="flex items-center gap-6">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden"
-              onClick={() => setMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-lg font-bold text-primary-foreground">
-                  ج
-                </span>
-              </div>
-              <div className="hidden sm:block">
-                <h1 className="text-xl font-bold text-primary"> جريدة طفولة</h1>
-                <p className="text-xs text-muted-foreground">
-                  صوت الطلاب والمعرفة
-                </p>
-              </div>
-            </Link>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        {/* اللوجو (يمين) */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm">
+            ج
           </div>
-
-          {/* Center: Main Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            <Link
-              href="/"
-              className={`text-sm font-medium border-2 p-2 rounded-[10px]  text-black    ${
-                pathName === "/"
-                  ? " transition-colors bg-black hover:bg-gray-800 text-white "
-                  : "bg-white"
-              }`}
-            >
-              الرئيسية
-            </Link>
-            <Link
-              href="/News"
-              className={`text-sm font-medium border-2 p-2 rounded-[10px]  text-black    ${
-                pathName === "/News"
-                  ? " transition-colors bg-black hover:bg-gray-800 text-white "
-                  : "bg-white"
-              }`}
-            >
-              أخبار
-            </Link>
-            <Link
-              href="/Artical"
-              className={`text-sm font-medium border-2 p-2 rounded-[10px]  text-black    ${
-                pathName === "/Artical"
-                  ? " transition-colors bg-black hover:bg-gray-800 text-white "
-                  : "bg-white"
-              }`}
-            >
-              أراء
-            </Link>
-            <Link
-              href="/Calcutural"
-              className={`text-sm font-medium border-2 p-2 rounded-[10px]  text-black    ${
-                pathName === "/Calcutural"
-                  ? " transition-colors bg-black hover:bg-gray-800 text-white "
-                  : "bg-white"
-              }`}
-            >
-              ثقافة
-            </Link>
-            <Link
-              href="/Sport"
-              className={`text-sm font-medium border-2 p-2 rounded-[10px]  text-black    ${
-                pathName === "/Sport"
-                  ? " transition-colors bg-black hover:bg-gray-800 text-white "
-                  : "bg-white"
-              }`}
-            >
-              رياضة
-            </Link>
-          </nav>
-
-          {/* Right: Search and Settings */}
-          <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hidden sm:inline-flex"
-              onClick={() => setSearchOpen(true)}
-            >
-              <Search className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setSettingsOpen(true)}
-            >
-              <Settings className="h-5 w-5" />
-            </Button>
+          <div className="hidden md:block">
+            <h1 className="text-lg font-bold text-foreground">جريدة الطفولة</h1>
           </div>
         </div>
-      </header>
 
-      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
-      <SettingsModal
-        isOpen={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-      />
-    </>
-  );
+        {/* الأزرار (يسار) */}
+        <div className="flex items-center gap-3">
+          
+          <ModeToggle />
+
+          <div className="h-6 w-[1px] bg-border mx-1"></div>
+
+          {/* زر تسجيل الدخول (يوديك لصفحة Login) */}
+          <Link 
+            href="/login" 
+            className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+          >
+            <LogIn className="h-4 w-4" />
+            <span className="hidden sm:inline">دخول</span>
+          </Link>
+
+          {/* زر تسجيل الخروج (بيشغل الدالة اللي كتبناها فوق) */}
+          <button 
+            onClick={handleLogout}
+            className="flex items-center gap-2 text-sm font-medium text-red-600 hover:text-red-700 transition-colors border border-red-200 bg-red-50 px-3 py-1.5 rounded-md"
+          >
+            <LogOut className="h-4 w-4" />
+            <span className="hidden sm:inline">خروج</span>
+          </button>
+
+          {/* زر حساب جديد */}
+          <Link 
+            href="/register" 
+            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-full transition-all shadow-md hover:shadow-lg"
+          >
+            <UserPlus className="h-4 w-4" />
+            <span>حساب جديد</span>
+          </Link>
+
+        </div>
+      </div>
+    </header>
+  )
 }

@@ -1,39 +1,15 @@
-import type React from "react"
 import type { Metadata } from "next"
-import { Cairo, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+import { Cairo } from "next/font/google"
 import "./globals.css"
-import { Header } from "@/components/header"
-import { BreakingNewsTicker } from "@/components/breaking-news-ticker"
-import { FeaturedArticle } from "@/components/featured-article"
-import { ArticleGrid } from "@/components/article-grid"
-import { Sidebar } from "@/components/sidebar"
-import { Footer } from "@/components/footer"
+import { ThemeProvider } from "@/components/theme-provider"
 
-const _cairo = Cairo({ subsets: ["arabic", "latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const cairo = Cairo({ subsets: ["arabic"] })
 
 export const metadata: Metadata = {
-  title: "جريدة طفولة  - College Newspaper",
-  description: "منصة إخبارية أكاديمية شاملة للأخبار والمقالات الجامعية",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
+  // العنوان اللي هيظهر في الـ Tab فوق
+  title: "كلية التربية للطفولة المبكرة | جامعة القاهرة",
+  // الوصف اللي بيظهر تحت العنوان في محركات البحث
+  description: "المنصة الرسمية والإخبارية لكلية التربية للطفولة المبكرة - جامعة القاهرة.",
 }
 
 export default function RootLayout({
@@ -42,15 +18,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className={`font-sans antialiased`}>
-              <Header />
-        
-
-
-        {children}
-        <Analytics />
-        <Footer />
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
+      <body className={`${cairo.className} min-h-screen bg-background text-foreground`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {/* هنا بيعرض أي صفحة (سواء دخول أو الموقع الرئيسي) */}
+            {children}
+        </ThemeProvider>
       </body>
     </html>
   )
