@@ -28,7 +28,6 @@ export default async function ThesesPage() {
         </div>
       </div>
 
-      {/* البحث المتقدم والقائمة */}
       <ThesesListContent initialTheses={theses} />
     </div>
   );

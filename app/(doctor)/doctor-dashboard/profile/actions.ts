@@ -13,7 +13,6 @@ export async function updateProfileImage(userId: string, imageBase64: string) {
   }
 }
 
-// 👈 الدالة الجديدة دي اللي هنسحب بيها الصورة بأمان
 export async function getUserProfileImage(userId: string) {
   try {
     const user = await prisma.user.findUnique({

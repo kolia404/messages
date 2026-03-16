@@ -30,7 +30,6 @@ export default function PromotionRow({ doctor }: { doctor: any }) {
 
   return (
     <>
-      {/* 1. Notifications Popup (Success/Error) */}
       <AnimatePresence>
         {popup.show && (
           <motion.div initial={{ opacity: 0, y: -50, x: "-50%" }} animate={{ opacity: 1, y: 20, x: "-50%" }} exit={{ opacity: 0, y: -50, x: "-50%" }} className="fixed top-5 left-1/2 z-[200] min-w-[300px]">
@@ -43,7 +42,6 @@ export default function PromotionRow({ doctor }: { doctor: any }) {
         )}
       </AnimatePresence>
 
-      {/* 2. Custom Confirmation Modal (بديل الـ confirm) */}
       <AnimatePresence>
         {confirmModal.show && (
           <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
@@ -63,7 +61,6 @@ export default function PromotionRow({ doctor }: { doctor: any }) {
         )}
       </AnimatePresence>
 
-      {/* 3. Table Row */}
       <tr className="hover:bg-slate-50/80 transition-all group">
         <td className="p-6">
           <div className="font-black text-slate-900 text-lg group-hover:text-blue-600 transition-colors">

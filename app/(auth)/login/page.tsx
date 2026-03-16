@@ -35,7 +35,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] px-4 relative overflow-hidden" dir="rtl">
-      {/* الدوائر الخلفية للزينة (نفس روح الـ Layout) */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/5 rounded-full blur-3xl" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/5 rounded-full blur-3xl" />
 
@@ -46,7 +45,6 @@ export default function LoginPage() {
       >
         <div className="bg-white rounded-[3rem] shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
           
-          {/* Header الجزء العلوي الأسود مثل الـ Sidebar */}
           <div className="bg-slate-950 p-10 text-center relative">
             <div className="w-20 h-20 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-[2rem] mx-auto flex items-center justify-center shadow-2xl shadow-blue-500/40 mb-6 rotate-3">
               <GraduationCap size={40} className="text-white" />
@@ -112,12 +110,10 @@ export default function LoginPage() {
 <motion.button
   type="submit"
   disabled={isLoading}
-  // تأثيرات حركية ناعمة عند تمرير الماوس والضغط
   whileHover={{ scale: 1.02 }}
   whileTap={{ scale: 0.96 }}
   className="group relative w-full bg-slate-950 text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-slate-300 hover:shadow-blue-600/40 transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center overflow-hidden border border-slate-800 hover:border-blue-500/50"
 >
-  {/* 1. تأثير اللمعان (Shine Effect) المستمر */}
   {!isLoading && (
     <motion.div 
       className="absolute inset-0 z-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
@@ -127,15 +123,13 @@ export default function LoginPage() {
         repeat: Infinity, 
         duration: 1.5, 
         ease: "easeInOut", 
-        repeatDelay: 3 // اللمعة هتتكرر كل 3 ثواني
+        repeatDelay: 3 
       }}
     />
   )}
 
-  {/* 2. التدرج اللوني اللي بيظهر مع الـ Hover */}
   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
-  {/* 3. محتوى الزر (النص والأيقونات) */}
   <div className="relative z-10 flex items-center gap-3">
     {isLoading ? (
       <>

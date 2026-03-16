@@ -34,7 +34,7 @@ const handler = NextAuth({
           id: user.id,
           name: user.name,
           role: user.role,
-          academicTitle: user.academicTitle, // 👈 التعديل هنا: سحب الحقل الصحيح من الداتابيز
+          academicTitle: user.academicTitle, 
         };
       }
     })
@@ -44,7 +44,7 @@ const handler = NextAuth({
       if (user) {
         token.role = (user as any).role;
         token.id = user.id;
-        token.academicTitle = (user as any).academicTitle; // 👈 التعديل هنا: حفظه في التوكن
+        token.academicTitle = (user as any).academicTitle; 
       }
       return token;
     },
@@ -52,7 +52,7 @@ const handler = NextAuth({
       if (session?.user) {
         (session.user as any).role = token.role;
         (session.user as any).id = token.id;
-        (session.user as any).academicTitle = token.academicTitle; // 👈 التعديل هنا: تمريره للسيشن
+        (session.user as any).academicTitle = token.academicTitle; 
       }
       return session;
     }

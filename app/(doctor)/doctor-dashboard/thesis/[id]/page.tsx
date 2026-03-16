@@ -15,7 +15,6 @@ export default async function ThesisDetailsPage({ params }: { params: { id: stri
 
   if (!thesis) notFound();
 
-  // دالة لتنسيق حالة الرسالة بستايل فخم
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "PENDING": 
@@ -32,7 +31,6 @@ export default async function ThesisDetailsPage({ params }: { params: { id: stri
   return (
     <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pt-8 px-4 pb-20" dir="rtl">
       
-      {/* زر العودة المحدث */}
       <Link href="/doctor-dashboard" className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-600 font-black bg-white px-6 py-3 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-all group">
         <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
         العودة للمكتبة
@@ -40,9 +38,7 @@ export default async function ThesisDetailsPage({ params }: { params: { id: stri
 
       <div className="bg-white rounded-[3rem] border border-slate-200/60 shadow-2xl shadow-slate-200/50 overflow-hidden">
         
-        {/* هيدر الرسالة (Dark Premium Style) */}
         <div className="bg-slate-950 p-10 md:p-14 text-white relative overflow-hidden">
-          {/* إضاءات زجاجية في الخلفية */}
           <div className="absolute top-[-50%] right-[-10%] w-[80%] h-[150%] bg-gradient-to-br from-blue-600/20 to-indigo-600/0 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-[-20%] left-[-10%] w-[40%] h-[80%] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
           
@@ -58,7 +54,6 @@ export default async function ThesisDetailsPage({ params }: { params: { id: stri
           </h1>
         </div>
 
-        {/* تفاصيل الباحث والتواريخ */}
         <div className="p-10 md:p-14 grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-slate-100">
           <div className="flex items-center gap-5 bg-slate-50 p-6 rounded-[2rem] border border-slate-100/60 transition-colors hover:border-blue-200">
             <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-600">
@@ -81,7 +76,6 @@ export default async function ThesisDetailsPage({ params }: { params: { id: stri
           </div>
         </div>
 
-        {/* لجنة الإشراف */}
         <div className="p-10 md:p-14 bg-white">
           <h3 className="text-2xl font-black text-slate-900 mb-8 flex items-center gap-3">
             <Users className="text-blue-600" size={28} />

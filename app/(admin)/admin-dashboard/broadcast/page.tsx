@@ -15,7 +15,6 @@ export default function BroadcastPage() {
     show: false, msg: "", type: 'success'
   });
 
-  // تحميل البيانات عند فتح الصفحة
   useEffect(() => {
     getNotifications().then(setNotifications);
   }, []);
@@ -99,7 +98,6 @@ export default function BroadcastPage() {
           </form>
         </motion.div>
 
-        {/* 3. Live Preview */}
         <div className="bg-slate-950 rounded-[3rem] p-10 min-h-[350px] flex items-center justify-center border-[8px] border-white shadow-2xl relative overflow-hidden group">
           <AnimatePresence mode="wait">
             {formData.title ? (
@@ -117,7 +115,6 @@ export default function BroadcastPage() {
         </div>
       </div>
 
-      {/* 4. Messages History List */}
       <div className="space-y-6 pt-10 border-t-2 border-slate-100">
         <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
           <Clock size={20} className="text-slate-400"/> سجل الرسائل المرسلة
@@ -143,7 +140,6 @@ export default function BroadcastPage() {
         </div>
       </div>
 
-      {/* 5. Custom Popup Modal */}
       <AnimatePresence>
         {showPopup.show && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm">

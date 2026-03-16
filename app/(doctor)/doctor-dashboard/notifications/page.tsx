@@ -1,12 +1,11 @@
 import { Info, CheckCircle2, Clock, BellRing, AlertTriangle } from "lucide-react";
-import { getNotifications } from "./actions"; // استيراد الأكشن
+import { getNotifications } from "./actions"; 
 import { formatDistanceToNow } from "date-fns";
 import { ar } from "date-fns/locale";
 
 export default async function NotificationsPage() {
   const notifications = await getNotifications();
   
-  // حساب عدد التنبيهات غير المقروءة
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (

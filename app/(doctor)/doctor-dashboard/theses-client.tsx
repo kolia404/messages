@@ -7,11 +7,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { createPortal } from "react-dom"; 
 
-// استيراد تنسيقات Swiper
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-// ألوان السلايدر العلوي
 const sliderColors = [
   "bg-gradient-to-br from-slate-900 to-slate-800",
   "bg-gradient-to-br from-blue-900 to-blue-800",
@@ -19,7 +17,6 @@ const sliderColors = [
   "bg-gradient-to-br from-indigo-900 to-indigo-800",
 ];
 
-// دالة جلب شارات الحالة
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "PENDING": 
@@ -32,7 +29,6 @@ const getStatusBadge = (status: string) => {
   }
 };
 
-// مكون الكارت الصغير
 const ThesisCard = ({ thesis, onClick, colorTheme }: { thesis: any; onClick: () => void; colorTheme?: string }) => {
   const isPhd = thesis.type === "PHD";
   const isColored = !!colorTheme;
@@ -104,7 +100,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
     setMounted(true);
   }, []);
 
-  // منع التمرير عند فتح النافذة
   useEffect(() => {
     if (selectedThesis) {
       document.body.style.overflow = 'hidden';
@@ -116,7 +111,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
   const sliderTheses = initialTheses.slice(0, 6);
   const isSearching = searchTerm.trim() !== "";
 
-  // نظام البحث الذكي
   const searchResults = initialTheses.filter((thesis) => {
     if (!searchTerm) return true;
     const terms = searchTerm.toLowerCase().split(" ").filter(Boolean);
@@ -136,7 +130,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
   return (
     <div className="w-full pb-20 bg-transparent relative" dir="rtl">
       
-      {/* 1. Hero Section */}
       <motion.div 
         initial={false}
         animate={{ height: isSearching ? "35vh" : "50vh" }}
@@ -144,7 +137,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
         className="relative bg-slate-950 flex flex-col items-center justify-center overflow-hidden rounded-b-[3rem] sm:rounded-b-[5rem] shadow-2xl -mt-8 md:-mt-12 w-[100vw] ml-[calc(-50vw+50%)] mr-[calc(-50vw+50%)]"
       >
         <div className="absolute inset-0 opacity-20">
-            {/* Speedlines Background Effect */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent"></div>
         </div>
         
@@ -163,7 +155,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
         </motion.div>
       </motion.div>
 
-      {/* 2. Search Bar */}
       <div className="relative z-40 max-w-4xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-12 mb-16">
         <div className="bg-white p-2 rounded-[2.5rem] shadow-2xl border border-slate-100 flex items-center gap-2 focus-within:ring-4 focus-within:ring-blue-500/10 transition-all">
           <div className="w-12 h-12 sm:w-14 sm:h-14 bg-slate-900 text-white rounded-[1.8rem] flex items-center justify-center shrink-0 shadow-lg">
@@ -184,10 +175,8 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
         </div>
       </div>
 
-      {/* 3. Main Content Area */}
       <div className="max-w-7xl mx-auto px-4 relative z-20">
         {isSearching ? (
-          /* Search Results View */
           <div className="space-y-8 min-h-[50vh]">
             <h2 className="text-2xl font-black text-slate-900 flex items-center gap-3">
               <div className="w-2 h-8 bg-blue-600 rounded-full"></div>
@@ -204,10 +193,8 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
             </div>
           </div>
         ) : (
-          /* Normal Home View */
           <div className="space-y-24">
             
-            {/* Slider Section */}
             {sliderTheses.length > 0 && (
               <div className="space-y-8">
                 <div className="flex items-center gap-4">
@@ -237,7 +224,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
               </div>
             )}
 
-            {/* Categorized Lists */}
             <div className="grid gap-20">
               {[
                 { title: "رسائل الدكتوراه", data: phdTheses, show: showAllPhds, setShow: setShowAllPhds, icon: <GraduationCap size={24}/>, color: "bg-slate-950" },
@@ -277,7 +263,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
         )}
       </div>
 
-      {/* 4. Responsive Modal - متجاوب كلياً */}
       {mounted && createPortal(
         <AnimatePresence>
           {selectedThesis && (
@@ -308,7 +293,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
                   <h2 className="text-xl sm:text-3xl font-black leading-tight text-white relative z-10">{selectedThesis.title}</h2>
                 </div>
 
-                {/* Modal Scrollable Body */}
                 <div className="p-6 sm:p-10 overflow-y-auto flex-1 bg-white space-y-8 custom-scrollbar">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex items-center gap-4 bg-slate-50 p-5 rounded-[1.5rem] border border-slate-100">
@@ -342,7 +326,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
                   </div>
                 </div>
 
-                {/* Modal Footer Button */}
                 <div className="p-6 sm:p-10 pt-0 bg-white">
                   <button 
                     onClick={() => setSelectedThesis(null)} 
@@ -358,7 +341,6 @@ export default function ThesesClientView({ initialTheses }: { initialTheses: any
         document.body
       )}
 
-      {/* تنسيقات CSS إضافية */}
       <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f8fafc; }

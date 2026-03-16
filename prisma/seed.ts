@@ -7,14 +7,14 @@ async function main() {
   const hashedPassword = await bcrypt.hash('admin123', 10)
   
   const admin = await prisma.user.upsert({
-    where: { doctorCode: 'admin' }, // البحث بالكود عشان ميتكررش
+    where: { doctorCode: 'admin' }, 
     update: {},
     create: {
-      doctorCode: 'admin', // ده اللي هتدخل بيه
+      doctorCode: 'admin', 
       name: 'مدير النظام',
       password: hashedPassword,
-      tempPassword: 'admin123', // عشان لو حبيت تعرضه في الجدول
-      academicTitle: 'مدير النظام', // لأننا ضفناها في السكيما
+      tempPassword: 'admin123', 
+      academicTitle: 'مدير النظام', 
       role: 'ADMIN',
     },
   })

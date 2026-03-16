@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import ExternalFormClient from "./external-form-client"; // سنحول الجزء ده لـ Client Component بسيط عشان الـ Popups
+import ExternalFormClient from "./external-form-client"; 
 import { Globe, School, Trash2, Award, Search } from "lucide-react";
 
 export default async function ExternalsPage() {

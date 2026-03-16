@@ -22,7 +22,7 @@ export async function promoteDoctorAction(doctorId: string, newTitle: string) {
     ]);
 
     revalidatePath("/admin-dashboard/promotions");
-    revalidatePath("/admin-dashboard/faculty-doctors"); // لتحديث الدرجة هناك أيضاً
+    revalidatePath("/admin-dashboard/faculty-doctors"); 
     return { success: true };
   } catch (error) {
     return { error: "حدث خطأ أثناء تنفيذ الترقية" };

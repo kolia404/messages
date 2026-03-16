@@ -2,7 +2,6 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-// 1. إضافة مناقش جديد
 export async function addExternalAction(formData: FormData) {
   const name = formData.get("name") as string;
   const academicTitle = formData.get("academicTitle") as string;
@@ -25,7 +24,6 @@ export async function addExternalAction(formData: FormData) {
   }
 }
 
-// 2. تحديث بيانات مناقش
 export async function updateExternalAction(id: string, data: { name: string, academicTitle: string, universityName: string, specialty: string }) {
   try {
     await prisma.externalExaminer.update({
@@ -45,7 +43,6 @@ export async function updateExternalAction(id: string, data: { name: string, aca
   }
 }
 
-// 3. حذف مناقش
 export async function deleteExternalAction(id: string) {
   try {
     await prisma.externalExaminer.delete({ where: { id } });

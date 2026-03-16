@@ -42,7 +42,6 @@ export default function ExternalFormClient({ initialData }: { initialData: any[]
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" dir="rtl">
       
-      {/* Popups & Modals */}
       <AnimatePresence>
         {popup.show && (
           <motion.div initial={{ opacity: 0, y: -50, x: "-50%" }} animate={{ opacity: 1, y: 20, x: "-50%" }} exit={{ opacity: 0, y: -50, x: "-50%" }} className="fixed top-5 left-1/2 z-[100] min-w-[320px]">

@@ -37,7 +37,6 @@ export default function ThesisForm({ doctors, externals }: { doctors: any[], ext
 
   return (
     <div className="relative">
-      {/* Popups */}
       <AnimatePresence>
         {popup.show && (
           <motion.div initial={{ opacity: 0, y: -50, x: "-50%" }} animate={{ opacity: 1, y: 20, x: "-50%" }} exit={{ opacity: 0, y: -50, x: "-50%" }} className="fixed top-5 left-1/2 z-[200] min-w-[320px]">
@@ -52,7 +51,6 @@ export default function ThesisForm({ doctors, externals }: { doctors: any[], ext
 
       <form ref={formRef} onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200 shadow-2xl shadow-slate-100 space-y-10">
         
-        {/* Section 1: Basic Info */}
         <div className="space-y-6">
           <h3 className="text-xl font-black text-slate-900 flex items-center gap-3">
             <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
@@ -93,7 +91,6 @@ export default function ThesisForm({ doctors, externals }: { doctors: any[], ext
           </div>
         </div>
 
-        {/* Section 2: Internal Supervisors */}
         <div className="space-y-6 pt-4 border-t border-slate-100">
           <h3 className="text-xl font-black text-slate-900 flex items-center gap-3">
             <div className="w-1.5 h-6 bg-emerald-500 rounded-full" />
@@ -112,7 +109,6 @@ export default function ThesisForm({ doctors, externals }: { doctors: any[], ext
           </div>
         </div>
 
-        {/* Section 3: External Examiners */}
         <div className="space-y-6 pt-4 border-t border-slate-100">
           <h3 className="text-xl font-black text-slate-900 flex items-center gap-3">
             <div className="w-1.5 h-6 bg-amber-500 rounded-full" />
@@ -131,7 +127,6 @@ export default function ThesisForm({ doctors, externals }: { doctors: any[], ext
           </div>
         </div>
 
-        {/* Submit Button */}
         <button disabled={loading} className="w-full bg-slate-950 text-white p-6 rounded-[1.5rem] font-black text-lg hover:bg-blue-600 transition-all shadow-2xl active:scale-[0.97] flex items-center justify-center gap-3 group">
           {loading ? (
             <Loader2 className="animate-spin" />

@@ -3,10 +3,6 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-/**
- * حذف رسالة علمية نهائياً
- * سيقوم بحذف الإشراف المرتبط بها تلقائياً بسبب (onDelete: Cascade) في السكيما
- */
 export async function deleteThesis(id: string) {
   try {
     await prisma.thesis.delete({
@@ -20,9 +16,7 @@ export async function deleteThesis(id: string) {
   }
 }
 
-/**
- * تحديث حالة الرسالة (مثلاً من قيد التجهيز إلى مجازة)
- */
+
 export async function updateThesisStatus(id: string, newStatus: "PENDING" | "IN_PROGRESS" | "APPROVED") {
   try {
     await prisma.thesis.update({
@@ -36,9 +30,7 @@ export async function updateThesisStatus(id: string, newStatus: "PENDING" | "IN_
   }
 }
 
-/**
- * إضافة رسالة علمية جديدة
- */
+
 export async function createThesis(data: {
   title: string;
   studentName: string;

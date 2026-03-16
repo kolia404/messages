@@ -3,7 +3,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// جلب العدد (موجودة مسبقاً)
 export async function getUnreadNotificationsCount() {
   try {
     return await prisma.notification.count({
@@ -12,7 +11,6 @@ export async function getUnreadNotificationsCount() {
   } catch { return 0; }
 }
 
-// الدالة الجديدة: تحديث كل الإشعارات لتصبح "مقروءة"
 export async function markAllNotificationsAsRead() {
   try {
     await prisma.notification.updateMany({

@@ -16,7 +16,6 @@ export default async function PromotionsPage() {
   return (
     <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-10" dir="rtl">
       
-      {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-200 pb-8">
         <div className="flex items-center gap-5">
           <div className="p-4 bg-blue-600 rounded-[1.5rem] text-white shadow-2xl shadow-blue-200">
@@ -31,7 +30,6 @@ export default async function PromotionsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         
-        {/* Table Column - Main Data */}
         <div className="lg:col-span-8 space-y-6">
           <div className="bg-white rounded-[2.5rem] border border-slate-200 shadow-2xl overflow-hidden">
             <div className="p-6 bg-slate-950 text-white font-black text-[11px] uppercase tracking-[4px] text-center border-b border-white/10">
@@ -59,7 +57,6 @@ export default async function PromotionsPage() {
           </div>
         </div>
 
-        {/* Sidebar Column - Recent Activity */}
         <div className="lg:col-span-4">
           <div className="bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl sticky top-8 border border-slate-800">
             <h3 className="text-white font-black text-lg mb-8 flex items-center gap-3">

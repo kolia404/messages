@@ -20,7 +20,6 @@ export default async function DoctorPortalPage() {
     }
   });
 
-  // هنا قمنا بحذف الـ Hero القديم وتركنا فقط استدعاء المكون التفاعلي
   return (
     <div className="min-h-screen bg-slate-50/30">
         <ThesesClientView initialTheses={theses} />

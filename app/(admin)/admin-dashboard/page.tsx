@@ -12,7 +12,7 @@ import ThesisList from "./thesis-list";
 export default async function AdminDashboardHome() {
   const [thesesCount, facultyCount, masterCount, phdCount, recentTheses] = await Promise.all([
     prisma.thesis.count(),
-    prisma.facultyDoctor.count(), // تأكدت من استخدام FacultyDoctor
+    prisma.facultyDoctor.count(), 
     prisma.thesis.count({ where: { type: "MASTER" } }),
     prisma.thesis.count({ where: { type: "PHD" } }),
     prisma.thesis.findMany({
@@ -31,7 +31,6 @@ export default async function AdminDashboardHome() {
   return (
     <div className="p-4 md:p-10 max-w-7xl mx-auto space-y-12" dir="rtl">
       
-      {/* Premium Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-slate-100 pb-10">
         <div className="space-y-2">
           <h1 className="text-4xl font-black text-slate-950 tracking-tight leading-tight">
@@ -49,7 +48,6 @@ export default async function AdminDashboardHome() {
         </Link>
       </div>
 
-      {/* Grid Stats - Modern Style */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {stats.map((stat, index) => (
           <div key={index} className="relative group overflow-hidden bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-100/50 hover:-translate-y-2 transition-all duration-500">
@@ -68,7 +66,6 @@ export default async function AdminDashboardHome() {
         ))}
       </div>
 
-      {/* Recent Theses List Section */}
       <div className="space-y-6 pt-6">
         <div className="flex items-center justify-between px-4">
           <h3 className="font-black text-slate-900 text-2xl flex items-center gap-3 italic">

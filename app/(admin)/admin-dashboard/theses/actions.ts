@@ -40,7 +40,7 @@ export async function addThesisAction(formData: FormData) {
     });
 
     revalidatePath("/admin-dashboard");
-    revalidatePath("/admin-dashboard/theses"); // تأكد من اسم المسار عندك
+    revalidatePath("/admin-dashboard/theses"); 
     return { success: true };
   } catch (error: any) {
     console.error("PRISMA ERROR:", error);

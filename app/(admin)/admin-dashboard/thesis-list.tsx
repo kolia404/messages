@@ -52,7 +52,6 @@ export default function ThesisList({ initialTheses }: { initialTheses: any[] }) 
 
   return (
     <div className="space-y-6">
-      {/* 1. Global Popup - Styled like the Layout */}
       <AnimatePresence>
         {popup.show && (
           <motion.div initial={{ opacity: 0, y: -20, x: "-50%" }} animate={{ opacity: 1, y: 20, x: "-50%" }} exit={{ opacity: 0, y: -20, x: "-50%" }} className="fixed top-5 left-1/2 z-[300]">
@@ -64,7 +63,6 @@ export default function ThesisList({ initialTheses }: { initialTheses: any[] }) 
         )}
       </AnimatePresence>
 
-      {/* 2. Main List Table */}
       <div className="bg-white rounded-[2rem] border border-slate-200/60 shadow-sm overflow-hidden">
         <div className="px-8 py-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
           <h3 className="text-slate-900 font-black flex items-center gap-2 tracking-tight">
@@ -134,7 +132,6 @@ export default function ThesisList({ initialTheses }: { initialTheses: any[] }) 
         </div>
       </div>
 
-      {/* 3. Modern Modals */}
       <AnimatePresence>
         {(editingThesis || deleteConfirm) && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">

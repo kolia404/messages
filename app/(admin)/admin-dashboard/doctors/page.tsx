@@ -14,17 +14,14 @@ export default function DoctorManagement() {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   
-  // State للتعديل
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ name: "", academicTitle: "" });
 
-  // State للحذف والتنبيهات
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [popup, setPopup] = useState<{ show: boolean; message: string; type: "success" | "error" }>({
     show: false, message: "", type: "success",
   });
 
-  // دالة إظهار التنبيه
   const showPopup = (message: string, type: "success" | "error") => {
     setPopup({ show: true, message, type });
     if (type === "success") {
@@ -32,7 +29,6 @@ export default function DoctorManagement() {
     }
   };
 
-  // تحميل البيانات
   useEffect(() => {
     if (activeTab === "list") loadAccounts();
   }, [activeTab]);
@@ -42,7 +38,6 @@ export default function DoctorManagement() {
     setAccounts(data);
   };
 
-  // --- دوال التحكم (المهمة لحل الخطأ) ---
   const handleEditClick = (acc: any) => {
     setEditingId(acc.id);
     setEditForm({ name: acc.name, academicTitle: acc.academicTitle });
@@ -82,7 +77,6 @@ export default function DoctorManagement() {
   return (
     <div className="max-w-6xl mx-auto space-y-8 px-4 relative" dir="rtl">
       
-      {/* 1. Popup Notification */}
       <AnimatePresence>
         {popup.show && (
           <motion.div initial={{ opacity: 0, y: -50, x: "-50%" }} animate={{ opacity: 1, y: 20, x: "-50%" }} exit={{ opacity: 0, y: -50, x: "-50%" }} className="fixed top-5 left-1/2 z-[100] min-w-[320px]">
@@ -95,7 +89,6 @@ export default function DoctorManagement() {
         )}
       </AnimatePresence>
 
-      {/* 2. Delete Confirmation Modal */}
       <AnimatePresence>
         {deleteConfirm && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
@@ -113,7 +106,6 @@ export default function DoctorManagement() {
         )}
       </AnimatePresence>
 
-      {/* 3. Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white/80 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white shadow-2xl shadow-slate-200/50">
         <div className="flex items-center gap-5">
           <div className="w-14 h-14 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-500/40 rotate-3 transition-transform duration-300">
@@ -125,7 +117,6 @@ export default function DoctorManagement() {
           </div>
         </div>
 
-        {/* Tab Switcher */}
         <div className="flex bg-slate-950 p-1.5 rounded-2xl shadow-2xl relative min-w-[320px] border border-white/5">
           <button onClick={() => setActiveTab("add")} className={`relative z-10 flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-black text-sm transition-all duration-300 ${activeTab === "add" ? "text-white" : "text-slate-500 hover:text-slate-300"}`}><UserPlus size={18} /> إضافة حساب</button>
           <button onClick={() => setActiveTab("list")} className={`relative z-10 flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-black text-sm transition-all duration-300 ${activeTab === "list" ? "text-white" : "text-slate-500 hover:text-slate-300"}`}><ListOrdered size={18} /> سجل البيانات</button>

@@ -32,9 +32,7 @@ export default function ProfilePage() {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // 👈 التعديل هنا: 5 * 1024 * 1024 يعني 5 ميجابايت
       if (file.size > 5 * 1024 * 1024) {
-        // 👈 وتعديل رسالة الخطأ هنا
         showPopup("حجم الصورة كبير جداً. يرجى اختيار صورة أقل من 5 ميجابايت.", "error");
         return;
       }
@@ -78,7 +76,6 @@ export default function ProfilePage() {
   return (
     <div className="max-w-3xl mx-auto pt-8 px-4 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20" dir="rtl">
       
-      {/* Global Popup Notification */}
       <AnimatePresence>
         {popup.show && (
           <motion.div initial={{ opacity: 0, y: -50, x: "-50%" }} animate={{ opacity: 1, y: 20, x: "-50%" }} exit={{ opacity: 0, y: -50, x: "-50%" }} className="fixed top-5 left-1/2 z-[300] min-w-[320px]">
@@ -91,7 +88,6 @@ export default function ProfilePage() {
         )}
       </AnimatePresence>
 
-      {/* زر العودة للوراء (Animated) */}
       <Link href="/doctor-dashboard" className="inline-block mb-8">
         <motion.div 
           whileHover={{ scale: 1.02 }}
@@ -110,7 +106,6 @@ export default function ProfilePage() {
       </Link>
 
       <div className="bg-white rounded-[3rem] border border-slate-200/60 shadow-2xl shadow-slate-200/50 overflow-hidden relative">
-        {/* Header Background */}
         <div className="h-40 bg-slate-950 absolute top-0 w-full overflow-hidden">
            <div className="absolute top-[-50%] left-[-10%] w-[60%] h-[150%] bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
            <div className="absolute top-[-20%] right-[-10%] w-[40%] h-[100%] bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
@@ -138,7 +133,6 @@ export default function ProfilePage() {
               <input type="file" accept="image/*" ref={fileInputRef} onChange={handleImageChange} className="hidden" />
             </div>
             
-            {/* مؤشر تفاعلي للتغيير */}
             {!imagePreview && !storedImage && (
                <span className="absolute -bottom-3 -right-3 bg-blue-600 text-white p-2 rounded-full border-4 border-white shadow-lg animate-bounce pointer-events-none">
                  <Camera size={16} />
@@ -146,7 +140,6 @@ export default function ProfilePage() {
             )}
           </div>
 
-          {/* زر حفظ الصورة (Premium Animated Button) */}
           <AnimatePresence>
             {imagePreview && (
               <motion.button 
@@ -159,7 +152,6 @@ export default function ProfilePage() {
                 disabled={isUploading}
                 className="group relative mb-10 overflow-hidden bg-slate-950 text-white px-8 py-4 rounded-2xl font-black shadow-xl shadow-slate-300 hover:shadow-blue-600/40 transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-3 border border-slate-800 hover:border-blue-500/50"
               >
-                {/* تأثير اللمعان (Shimmer) المستمر */}
                 {!isUploading && (
                   <motion.div 
                     className="absolute inset-0 z-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
@@ -169,7 +161,6 @@ export default function ProfilePage() {
                   />
                 )}
                 
-                {/* خلفية التدرج عند مرور الماوس */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
                 <div className="relative z-10 flex items-center gap-3">
